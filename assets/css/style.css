@@ -28,10 +28,19 @@ h2 {
 .show{
     width: 20%;
     display: inline-block;
+    margin-top: 1%;
+    border: 3px solid white
 }
 
 .show img {
     width:100%;
+    vertical-align: middle;
+}
+
+.show:hover {
+    width: 21%;
+    border: 3px solid red;
+    margin-top: 0;
 }
 
 /* Game */
