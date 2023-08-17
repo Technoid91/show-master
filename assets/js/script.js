@@ -49,8 +49,9 @@ function runQuiz(currentQuiz){
     let pickerField = document.getElementsByClassName('show-picker')[0];
     let quizField = document.getElementsByClassName('quiz-field')[0];
     pickerField.setAttribute('hidden', 'true');
-    askQuestion(currentQuiz[0]);
     quizField.removeAttribute('hidden');
+    askQuestion(currentQuiz[0]);
+
 
 }
 
@@ -59,6 +60,12 @@ function askQuestion(questionData){
     let answers = [questionData[1], questionData[2], questionData[3], questionData[4]];
     let correctAnswer = questionData[1];
 
+    let img = document.createElement('img');
+    img.src = 'assets/images/test-img.png';
+    img.alt = 'Question supporting image';
+    let questImage = document.getElementsByClassName('quiz-image')[0];
+    questImage.innerHTML = '';
+    questImage.appendChild(img);
     document.getElementsByClassName('question')[0].textContent = question;
     questionAnswers = document.getElementsByClassName('answer');
 
