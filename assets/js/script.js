@@ -52,6 +52,7 @@ function runQuiz(currentQuiz){
     quizField.removeAttribute('hidden');
 
     askQuestion(currentQuiz[0]);
+    checkAnswer(currentQuiz[0]);
 
 
 }
@@ -59,7 +60,6 @@ function runQuiz(currentQuiz){
 function askQuestion(questionData){
     let question = questionData[0];
     let answers = [questionData[1], questionData[2], questionData[3], questionData[4]];
-    let correctAnswer = questionData[1];
 
     let img = document.createElement('img');
     img.src = 'assets/images/test-img.png';
@@ -83,13 +83,23 @@ function askQuestion(questionData){
     let quizField = document.getElementsByClassName('quiz-field')[0];
 }
 
-function checkAnswer(userAnswer, correctAnswer){
+function checkAnswer(questionData){
 
-    for (answer of answers){
-        answer.addEventListener('click', function(){
+    let submButton = document.getElementsByTagName('button')[0];
+    submButton.addEventListener('click', function(){
+        let correctAnswer = questionData[1];
+        let userAnswer = document.getElementsByClassName('user-answer')[0].textContent;
+        console.log(`User picked ${userAnswer}`);
+        console.log(`Correct answer: ${correctAnswer}`);
+        if (userAnswer === correctAnswer){
+            alert('Correct!')
+        }
+        else{
+            alert('You are wrong :(   The correct answer is '+correctAnswer);
+        }
+    })
 
-        })
-    }
+
 
 }
 
