@@ -50,6 +50,7 @@ function runQuiz(currentQuiz){
     let quizField = document.getElementsByClassName('quiz-field')[0];
     pickerField.setAttribute('hidden', 'true');
     quizField.removeAttribute('hidden');
+
     askQuestion(currentQuiz[0]);
 
 
@@ -70,10 +71,26 @@ function askQuestion(questionData){
     questionAnswers = document.getElementsByClassName('answer');
 
     for (let i = 0; i < answers.length; i++){
-        document.getElementsByClassName('answer')[i].textContent = answers[i];
+        questionAnswers[i].textContent = answers[i];
+        questionAnswers[i].addEventListener('click', function(event){
+            let oldChoice = document.getElementsByClassName('user-answer');
+            for (each of oldChoice){
+                each.classList.remove('user-answer');
+            }
+            questionAnswers[i].classList.add('user-answer');
+        })
+    }
+    let quizField = document.getElementsByClassName('quiz-field')[0];
+}
+
+function checkAnswer(userAnswer, correctAnswer){
+
+    for (answer of answers){
+        answer.addEventListener('click', function(){
+
+        })
     }
 
-    let quizField = document.getElementsByClassName('quiz-field')[0];
 }
 
 function randomizeElements(initialArray){
@@ -88,9 +105,20 @@ let himymQuiz = [
     "Green lantern",
     "Weird picture",
     "Robin's purse"],
-    ["Second Question",
-    "Answer1",
-    "Answer2"]
+    ["How called the Marshal's and Barney's annual tradition?",
+    "Slapsgiving Day",
+    "St Barney's Day",
+    "Desperate "],
+    ["Each Halloween Ted was looking for a mystery girl dressed as...",
+    "Slutty pumpkin",
+    "Space spud",
+    "Empire State Building",
+    "Barney"],
+    ["What was the favorite Ted's shoes?",
+    "Red cowboy boots",
+    "Grinch slippers",
+    "College trainers",
+    "Yellow wellies"]
     ];
 
 let tbbtQuiz = [

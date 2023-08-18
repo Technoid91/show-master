@@ -68,6 +68,10 @@ h1 {
     color: black;
 }
 
+.user-answer {
+    background-color: red;
+}
+
 button {
     font-size:100%;
     margin: 15px;
