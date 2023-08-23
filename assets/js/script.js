@@ -123,15 +123,30 @@ function checkAnswer(correctAnswer){
     console.log(`Correct answer: ${correctAnswer}`);
     if (userAnswer === correctAnswer){
         alert('Correct!')
+        userScore(true);
     }
     else{
        alert('You are wrong :(   The correct answer is '+correctAnswer);
+       userScore(false);
     }
     answerElement.classList.remove('user-answer');
     let nextQuestion = Number(document.getElementsByClassName('question-number')[0].textContent);
     nextQuestion++;
     console.log('Next question: '+nextQuestion);
     document.getElementsByClassName('question-number')[0].textContent = nextQuestion;
+}
+
+function userScore(action){
+    let scoreCounter = document.getElementsByClassName('user-score')[0];
+    let score = Number(scoreCounter.textContent);
+    if (action === true) {
+        score+=100;
+    }
+    else{
+        score-=50;
+    }
+    scoreCounter.textContent = score;
+
 }
 
 function quizResult(){
