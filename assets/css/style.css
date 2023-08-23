@@ -49,6 +49,11 @@ h1 {
     font-size: 150%;
 }
 
+.question-number {
+    float: right;
+    margin-right: 20px;
+}
+
 .quiz-image img{
     width: 30%;
     margin: 15px;
