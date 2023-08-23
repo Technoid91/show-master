@@ -33,7 +33,12 @@ function runGame(pickedShow){
     let nextQuestion = document.getElementsByTagName('button')[0];
     nextQuestion.addEventListener('click', function(){
        questionNumber = Number(document.getElementsByClassName('question-number')[0].textContent);
-       askQuestion(currentQuiz[questionNumber]);
+       if (questionNumber > 4){
+           quizResult();
+       }
+       else{
+           askQuestion(currentQuiz[questionNumber]);
+       }
     })
 }
 
@@ -60,14 +65,26 @@ function quizTitle(show){
 function askQuestion(questionData){
     let question = questionData[0];
     let correctAnswer = questionData[1];
-    let answers = [questionData[1], questionData[2], questionData[3], questionData[4]];
+    let allAnswers = [questionData[1], questionData[2], questionData[3], questionData[4]];
+    let imgPath = [questionData[5]];
+    console.log(imgPath);
 
-/*    console.log('QUESTION: '+question);
-    console.log('ANSWERS: ' + answers);
-    console.log('CORRECT: '+ correctAnswer);*/
+    // randomize answers to show
+    let answers = randomizeList(allAnswers);
 
-    let img = document.createElement('img');
-    img.src = 'assets/images/test-img.png';
+
+    let img = document.getElementById('question-img');
+    img.src = 'assets/images/no-img.png';
+
+    /*if (imgPath){
+        img.src = 'assets/images/'+imgPath;
+        console.log('image found');
+    }
+    else{
+        console.log('IMAGE NOT FOUND!!!')
+        img.src = 'assets/images/no-img.png';
+    }*/
+
     img.alt = 'Question supporting image';
     let questImage = document.getElementsByClassName('quiz-image')[0];
     questImage.innerHTML = '';
@@ -113,21 +130,34 @@ function checkAnswer(correctAnswer){
     answerElement.classList.remove('user-answer');
     let nextQuestion = Number(document.getElementsByClassName('question-number')[0].textContent);
     nextQuestion++;
+    console.log('Next question: '+nextQuestion);
     document.getElementsByClassName('question-number')[0].textContent = nextQuestion;
 }
 
-function randomizeElements(initialArray){
-    let randNum = Math.floor(Math.random() * (i+1));
-    let randArray = [];
-    let addElement = initialArray.pop(randNum);
-    randArray.push(addElement);
+function quizResult(){
+    alert('Congratulations! You have passed our quiz!');
+    /*window.location.reload();*/
 }
+
+function randomizeList(initial){
+
+    let newList = [];
+    for (let i = initial.length; i > 0; i--){
+        let randNum = Math.floor(Math.random() * (i+2));
+        element = initial.pop(randNum);
+        newList.push(element);
+    }
+
+    return newList;
+}
+
 let himymQuiz = [
     ["What thing Ted stole from the restaurant several times to impress Robin?",
     "Blue french horn",
     "Green lantern",
     "Weird picture",
-    "Robin's purse"],
+    "Robin's purse",
+    "test-img.png"],
     ["How called the Marshal's and Barney's annual tradition?",
     "Slapsgiving Day",
     "St Barney's Day",
@@ -142,7 +172,17 @@ let himymQuiz = [
     "Red cowboy boots",
     "Grinch slippers",
     "College trainers",
-    "Yellow wellies"]
+    "Yellow wellies"],
+    ["Question 5",
+    "Correct answer",
+    "Answer2",
+    "Answer3",
+    "Answer4"],
+    ["Never shown question",
+    "No answer 1",
+    "No answer 2",
+    "No answer 3",
+    "No answer 4",]
     ];
 
 let tbbtQuiz = [
