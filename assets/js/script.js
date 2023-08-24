@@ -1,3 +1,5 @@
+
+
 let showPicker = document.getElementsByClassName('show');
 for (show of showPicker){
     show.addEventListener('click', function(event) {
@@ -11,6 +13,8 @@ for (show of showPicker){
 * Function to pick the question pool based on user's choice
 */
 function runGame(pickedShow){
+
+    /* define question list to show based on class of picked show image*/
     if (pickedShow === 'himym'){
         currentQuiz = himymQuiz;
     } else if (pickedShow === 'tbbt'){
@@ -29,17 +33,31 @@ function runGame(pickedShow){
     quizField.removeAttribute('hidden');
 
     /* Show first question */
+    /*askQuestion(currentQuiz[0]);*/
+
+    /* Add event listener for submit button to show next question*/
+
     askQuestion(currentQuiz[0]);
-    let nextQuestion = document.getElementsByTagName('button')[0];
-    nextQuestion.addEventListener('click', function(){
-       questionNumber = Number(document.getElementsByClassName('question-number')[0].textContent);
-       if (questionNumber > 4){
-           quizResult();
-       }
-       else{
-           askQuestion(currentQuiz[questionNumber]);
-       }
-    })
+    let submitButton = document.getElementsByTagName('button')[0];
+    submitButton.addEventListener('click', function(){
+        questionNumber = Number(document.getElementsByClassName('question-number')[0].textContent);
+        console.log('Question: '+questionNumber);
+        if (document.querySelector('.user-answer')){
+            console.log('Check question: '+(questionNumber-1));
+            checkAnswer(currentQuiz[questionNumber-1][1]);
+            if (questionNumber > 4){
+                quizResult();
+            }
+            else{
+                submitButton.classList.remove('active-button');
+                askQuestion(currentQuiz[questionNumber]);
+            }
+        }else{
+            alert('You should pick the answer first');
+        }
+
+    });
+
 }
 
 /*
@@ -104,14 +122,10 @@ function askQuestion(questionData){
                 }
             questionAnswers[i].classList.add('user-answer');
             }
-        })
+            let submit = document.getElementsByTagName('button')[0];
+            submit.classList.add('active-button');
+        });
     }
-    if (document.getElementsByClassName('user-answer')[0]){
-        let submit = document.getElementsByTagName('button')[0];
-        submit.addEventListener('click', checkAnswer(correctAnswer));
-    }
-    /*let quizField = document.getElementsByClassName('quiz-field')[0];*/
-
 }
 
 function checkAnswer(correctAnswer){
