@@ -81,47 +81,51 @@ function quizTitle(show){
 }
 
 function askQuestion(questionData){
-    let question = questionData[0];
-    let correctAnswer = questionData[1];
-    let allAnswers = [questionData[1], questionData[2], questionData[3], questionData[4]];
-    let imgPath = [questionData[5]];
-    console.log(imgPath);
 
-    // randomize answers to show
+    // get all question data from the list
+    let question = questionData[0];
+    let allAnswers = [questionData[1], questionData[2], questionData[3], questionData[4]];
+    let imgName;
+
+    // randomize answers to show because the first one is always correct
     let answers = randomizeList(allAnswers);
 
-
     let img = document.getElementById('question-img');
-    img.src = 'assets/images/no-img.png';
 
-    /*if (imgPath){
-        img.src = 'assets/images/'+imgPath;
-        console.log('image found');
+    // check if image name is specified in the list by its length
+    if (questionData.length > 5){
+        img.src = 'assets/images/'+questionData[5];
+        img.alt = 'Question supporting image without any clues';
     }
     else{
-        console.log('IMAGE NOT FOUND!!!')
         img.src = 'assets/images/no-img.png';
-    }*/
+        img.alt = 'No supporting image for this question';
+    }
 
-    img.alt = 'Question supporting image';
+    // show corresponding image
     let questImage = document.getElementsByClassName('quiz-image')[0];
     questImage.innerHTML = '';
     questImage.appendChild(img);
 
+    // show question
     document.getElementsByClassName('question')[0].textContent = question;
-    questionAnswers = document.getElementsByClassName('answer');
 
+    // show answers
+    questionAnswers = document.getElementsByClassName('answer');
     for (let i = 0; i < answers.length; i++){
         questionAnswers[i].textContent = answers[i];
 
+        // add event listener to highlight hovered and chosen answer
         questionAnswers[i].addEventListener('click', function(event){
             let oldChoice = document.getElementsByClassName('user-answer');
+            // if user changed his mind - remove highlight
             if (oldChoice){
                 for (each of oldChoice){
                     each.classList.remove('user-answer');
                 }
             questionAnswers[i].classList.add('user-answer');
             }
+            // if user picked the answer - make submit button active
             let submit = document.getElementsByTagName('button')[0];
             submit.classList.add('active-button');
         });
@@ -200,7 +204,8 @@ let himymQuiz = [
     "Red cowboy boots",
     "Grinch slippers",
     "College trainers",
-    "Yellow wellies"],
+    "Yellow wellies",
+    "test-img.png"],
     ["Question 5",
     "Correct answer",
     "Answer2",
@@ -210,7 +215,7 @@ let himymQuiz = [
     "No answer 1",
     "No answer 2",
     "No answer 3",
-    "No answer 4",]
+    "No answer 4"]
     ];
 
 let tbbtQuiz = [
