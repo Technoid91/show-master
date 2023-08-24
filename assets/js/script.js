@@ -42,7 +42,7 @@ function runGame(pickedShow){
     submitButton.addEventListener('click', function(){
         questionNumber = Number(document.getElementsByClassName('question-number')[0].textContent);
         console.log('Question: '+questionNumber);
-        if (document.querySelector('.user-answer')){
+        if (document.getElementsByClassName('user-answer').length > 0){
             console.log('Check question: '+(questionNumber-1));
             checkAnswer(currentQuiz[questionNumber-1][1]);
             if (questionNumber > 4){
@@ -172,11 +172,10 @@ function randomizeList(initial){
 
     let newList = [];
     for (let i = initial.length; i > 0; i--){
-        let randNum = Math.floor(Math.random() * (i+2));
-        element = initial.pop(randNum);
+        let randNum = Math.floor(Math.random() * (i));
+        element = initial.splice(randNum, 1)[0];
         newList.push(element);
     }
-
     return newList;
 }
 
