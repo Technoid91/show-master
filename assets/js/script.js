@@ -53,7 +53,7 @@ function runGame(pickedShow){
                 askQuestion(currentQuiz[questionNumber]);
             }
         }else{
-            alert('You should pick the answer first');
+            alert('Please pick the answer and than hit "Submit Answer"');
         }
 
     });
@@ -140,11 +140,9 @@ function checkAnswer(correctAnswer){
     console.log(`User picked ${userAnswer}`);
     console.log(`Correct answer: ${correctAnswer}`);
     if (userAnswer === correctAnswer){
-        alert('Correct!')
         userScore(true);
     }
     else{
-       alert('You are wrong :(   The correct answer is '+correctAnswer);
        userScore(false);
     }
     answerElement.classList.remove('user-answer');
@@ -168,8 +166,67 @@ function userScore(action){
 }
 
 function quizResult(){
-    alert('Congratulations! You have passed our quiz!');
-    /*window.location.reload();*/
+    // Change field to the one with user score
+    let quizField = document.getElementsByClassName('quiz-field')[0];
+    let resultField = document.getElementsByClassName('result-field')[0];
+    quizField.setAttribute('hidden', true);
+    resultField.removeAttribute('hidden');
+
+    // Define how well user passed the quiz
+    let userRange;
+    let totalScore = Number(document.getElementsByClassName('user-score')[0].textContent);
+    document.getElementsByClassName('final-score')[0].textContent = totalScore;
+    if (totalScore > 450){
+        userRange = "golden";
+    } else if (totalScore > 300){
+        userRange = "silver";
+    } else if (totalScore > 1 ){
+        userRange = "bronze";
+    } else {
+        userRange: "Beginner";
+        // if user has 0 or less scores
+        document.getElementsByClassName('score-field')[0].setAttribute('hidden', true);
+        document.getElementsByClassName('user-data')[0].setAttribute('hidden', true);
+        document.getElementsByTagName('button')[2].setAttribute('hidden', true);
+        document.getElementsByClassName('cheer-up')[0].removeAttribute('hidden');
+    }
+    document.getElementsByClassName('score-range')[0].textContent = userRange;
+    document.getElementsByClassName('score-field')[0].classList.add('range-'+userRange);
+
+    let inputField = document.getElementById('username');
+    let certButton = document.getElementsByClassName('cert-button')[0];
+
+    inputField.addEventListener('input', function(){
+        // get value from user input field
+        let userInput = inputField.value;
+        // check if input contains digits
+        let digits = /\d/.test(userInput);
+
+        // input should be at least 4 characters without numbers
+        if (userInput.length > 3 && !digits){
+            certButton.classList.add('active-button');
+        }
+        else{
+            certButton.classList.remove('active-button');
+        }
+    })
+
+    certButton.addEventListener('click', function(){
+        let userName = inputField.value;
+        if (document.getElementsByClassName('active-button').length > 2){
+            window.open("cert.html", "_blank");
+        }
+        else{
+            alert('Please enter your name. It should be at lest 4 letters without numbers. For example: Tony');
+        }
+
+    })
+
+    let restartButton = document.getElementsByTagName('button')[1];
+    restartButton.addEventListener('click', function(){
+        window.location.reload();
+        /*window.open("cert.html", "_blank");*/
+    })
 }
 
 function randomizeList(initial){

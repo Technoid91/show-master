@@ -86,6 +86,70 @@ button {
     border-radius: 18px;
 }
 
-.active-button{
+.active-button {
     background-color: lime;
+}
+/* Result field with total score that appears in the end of the game*/
+.result-field {
+    width: 70%;
+    margin: 0 auto;
+    font-size: 250%;
+    background-color: silver;
+}
+
+.score-field {
+    width: 50%;
+    margin: 10px auto;
+    background-color: grey;
+    border-radius: 8px;
+    text-transform: capitalize;
+}
+
+.score-field div{
+    display: inline-block;
+}
+
+.range-golden {
+    background-color: gold;
+}
+
+.range-silver {
+    background-color: silver;
+}
+
+.range-bronze {
+    background-color: chocolate;
+}
+
+.user-data {
+    font-size: 50%;
+    margin-top: 20px;
+}
+.user-data input {
+    font-size: 100%;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.menu {
+    font-size: 50%;
+}
+
+.cert-bg {
+    width: 60%;
+    margin: 2% 20%;
+    background-color: gold;
+    position: absolute;
+    z-index: -1;
+}
+.cert-bg img {
+    width: 100%;
+}
+
+.cert-text{
+    width: 35%;
+    margin: 10% 3% 0 42%;
+    font-size: 170%;
+    position: fixed;
+    z-index: 2;
 }
