@@ -1,11 +1,22 @@
 
 
 let showPicker = document.getElementsByClassName('show');
+let inputField = document.getElementById('username');
+let username;
 for (show of showPicker){
     show.addEventListener('click', function(event) {
-        let userChoice = event.currentTarget.classList[1];
-        quizTitle(userChoice);
-        runGame(userChoice);
+        let userInput = inputField.value;
+        // check if input contains digits
+        let digits = /\d/.test(userInput);
+        // input should be at least 4 characters without numbers
+        if (userInput.length > 3 && !digits){
+            let userChoice = event.currentTarget.classList[1];
+            username = userInput;
+            quizTitle(userChoice);
+            runGame(userChoice);
+        }else{
+            alert('Please enter your name (minimum 4 characters without numbers');
+        }
     });
 }
 
@@ -13,8 +24,9 @@ for (show of showPicker){
 * Function to pick the question pool based on user's choice
 */
 function runGame(pickedShow){
-
-    /* define question list to show based on class of picked show image*/
+    // pick the corresponding image for final results page
+    document.getElementsByClassName('show-imga')[0].textContent = pickedShow;
+    // define question list to show based on class of picked show image
     if (pickedShow === 'himym'){
         currentQuiz = himymQuiz;
     } else if (pickedShow === 'tbbt'){
@@ -26,24 +38,21 @@ function runGame(pickedShow){
         throw(`Wrong show! ${pickedShow} does not exist`);
     }
 
-    /* Hide show picker field with show posters and show quiz field */
+    // Hide show picker field with show posters and show quiz field
     let pickerField = document.getElementsByClassName('show-picker')[0];
     let quizField = document.getElementsByClassName('quiz-field')[0];
+    let userData = document.getElementsByClassName('user-data')[0];
     pickerField.setAttribute('hidden', 'true');
+    userData.setAttribute('hidden', 'true');
     quizField.removeAttribute('hidden');
 
-    /* Show first question */
-    /*askQuestion(currentQuiz[0]);*/
-
-    /* Add event listener for submit button to show next question*/
+    // Add event listener for submit button to show next question
 
     askQuestion(currentQuiz[0]);
     let submitButton = document.getElementsByTagName('button')[0];
     submitButton.addEventListener('click', function(){
         questionNumber = Number(document.getElementsByClassName('question-number')[0].textContent);
-        console.log('Question: '+questionNumber);
         if (document.getElementsByClassName('user-answer').length > 0){
-            console.log('Check question: '+(questionNumber-1));
             checkAnswer(currentQuiz[questionNumber-1][1]);
             if (questionNumber > 4){
                 quizResult();
@@ -55,9 +64,7 @@ function runGame(pickedShow){
         }else{
             alert('Please pick the answer and than hit "Submit Answer"');
         }
-
     });
-
 }
 
 /*
@@ -133,12 +140,9 @@ function askQuestion(questionData){
 }
 
 function checkAnswer(correctAnswer){
-    console.log("ANSWER TO CHECK: "+correctAnswer);
 
     let answerElement = document.getElementsByClassName('user-answer')[0];
     let userAnswer = answerElement.textContent;
-    console.log(`User picked ${userAnswer}`);
-    console.log(`Correct answer: ${correctAnswer}`);
     if (userAnswer === correctAnswer){
         userScore(true);
     }
@@ -148,7 +152,6 @@ function checkAnswer(correctAnswer){
     answerElement.classList.remove('user-answer');
     let nextQuestion = Number(document.getElementsByClassName('question-number')[0].textContent);
     nextQuestion++;
-    console.log('Next question: '+nextQuestion);
     document.getElementsByClassName('question-number')[0].textContent = nextQuestion;
 }
 
@@ -156,71 +159,48 @@ function userScore(action){
     let scoreCounter = document.getElementsByClassName('user-score')[0];
     let score = Number(scoreCounter.textContent);
     if (action === true) {
-        score+=100;
+        score+=20;
     }
     else{
-        score-=50;
+        score-=5;
     }
     scoreCounter.textContent = score;
+    console.log('Score: '+score);
 
 }
 
 function quizResult(){
     // Change field to the one with user score
-    let quizField = document.getElementsByClassName('quiz-field')[0];
-    let resultField = document.getElementsByClassName('result-field')[0];
-    quizField.setAttribute('hidden', true);
-    resultField.removeAttribute('hidden');
+    document.getElementsByClassName('quiz-field')[0].setAttribute('hidden', true);
+    document.getElementsByClassName('result-field')[0].removeAttribute('hidden');
+
+    // Congratulations to username
+    document.getElementsByClassName('congrat-user')[0].textContent = 'Congratulations, '+username+'!'
+
+    // get total score
+    let totalScore = Number(document.getElementsByClassName('user-score')[0].textContent);
 
     // Define how well user passed the quiz
     let userRange;
-    let totalScore = Number(document.getElementsByClassName('user-score')[0].textContent);
-    document.getElementsByClassName('final-score')[0].textContent = totalScore;
-    if (totalScore > 450){
+    if (totalScore > 80){
         userRange = "golden";
-    } else if (totalScore > 300){
+    } else if (totalScore > 70){
         userRange = "silver";
-    } else if (totalScore > 1 ){
+    } else if (totalScore > 40 ){
         userRange = "bronze";
     } else {
-        userRange: "Beginner";
+        userRange = "beginner";
+        totalScore = (totalScore < 0) ? 0 : totalScore;
         // if user has 0 or less scores
-        document.getElementsByClassName('score-field')[0].setAttribute('hidden', true);
         document.getElementsByClassName('user-data')[0].setAttribute('hidden', true);
         document.getElementsByTagName('button')[2].setAttribute('hidden', true);
         document.getElementsByClassName('cheer-up')[0].removeAttribute('hidden');
     }
+    console.log('Score:'+totalScore+' Range: '+userRange )
+    // display total score, user range and change style of background accordingly
+    document.getElementsByClassName('final-score')[0].textContent = totalScore+" / 100";
     document.getElementsByClassName('score-range')[0].textContent = userRange;
     document.getElementsByClassName('score-field')[0].classList.add('range-'+userRange);
-
-    let inputField = document.getElementById('username');
-    let certButton = document.getElementsByClassName('cert-button')[0];
-
-    inputField.addEventListener('input', function(){
-        // get value from user input field
-        let userInput = inputField.value;
-        // check if input contains digits
-        let digits = /\d/.test(userInput);
-
-        // input should be at least 4 characters without numbers
-        if (userInput.length > 3 && !digits){
-            certButton.classList.add('active-button');
-        }
-        else{
-            certButton.classList.remove('active-button');
-        }
-    })
-
-    certButton.addEventListener('click', function(){
-        let userName = inputField.value;
-        if (document.getElementsByClassName('active-button').length > 2){
-            window.open("cert.html", "_blank");
-        }
-        else{
-            alert('Please enter your name. It should be at lest 4 letters without numbers. For example: Tony');
-        }
-
-    })
 
     let restartButton = document.getElementsByTagName('button')[1];
     restartButton.addEventListener('click', function(){

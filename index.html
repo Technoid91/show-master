@@ -14,6 +14,12 @@
     </heading>
     <section>
         <div class="game-field">
+            <div class="user-data">
+                <p>Please enter your name</p>
+                <p>(minimum 4 characters without numbers)</p>
+                <label for="username">Full Name</label>
+                <input id="username" type="text" required>
+            </div>
             <div class="show-picker">
                 <h3>Pick up the show to start</h3>
                 <div class="show himym"><img src="assets/images/show-HIMYM.jpg" alt="How I met Your Mother"></div>
@@ -35,7 +41,8 @@
             </div>
             <div class="result-field" hidden>
                 <div class="top">
-                    <p>Congratulations!</p>
+                    <p class="congrat-user"></p>
+                    <p class="show-imga"></p>
                     <p>You've passed the quiz</p>
                 </div>
                 <div class="score-field">
@@ -48,16 +55,11 @@
                         <p class="score-range">Silver</p>
                     </div>
                 </div>
-                <div class="user-data">
-                    <label for="username">Please enter your name to obtain certificate</label>
-                    <input id="username" type="text" required>
-                </div>
                 <div class="cheer-up" hidden>
-                    <p>Your final score is 0, but don't worry. The main purpose of every TV show is to entertain, give positive emotions and leave a good impression.</p>
+                    <p>Don't worry about your final result. The main purpose of every TV show is to entertain, give positive emotions and leave a good impression. And this quiz was made just for fun</p>
                 </div>
                 <div class="menu">
                     <button class="active-button">New Game</button>
-                    <button class="cert-button">Get certificate</button>
                 </div>
 
             </div>
