@@ -167,3 +167,62 @@ button {
 .menu {
     font-size: 100%;
 }
+
+@media screen and (max-width: 600px){
+
+    h2 {
+        font-size: 100%;
+    }
+
+    .user-data {
+        width: 80%;
+        margin: 10px auto;
+        padding: 5px;
+        border: 3px solid #ffad33;
+        border-radius: 8px;
+        font-size: 100%;
+    }
+    .user-data input {
+        font-size: 100%;
+        border: 2px solid #ffc266;
+        border-radius: 4px;
+        text-align: center;
+    }
+    .show{
+        width:60%;
+    }
+    .quiz-field{
+        width: 90%;
+        font-size: 90%;
+    }
+    .question-number {
+        float: none;
+        margin: 0;
+    }
+    .quiz-image img{
+        width: 50%;
+        margin-top: 20px;
+    }
+    .answer {
+        margin: 5px;
+
+    .result-field {
+        width: 90%;
+        font-size: 100%;
+        padding: 15px 5px;
+    }
+    .congrat-user {
+        margin: 10px;
+        font-size: 150%;
+    }
+    .show-img img{
+        width: 80%;
+        margin: 0 auto;
+    }
+    .score-field {
+        width: 80%;
+    }
+    .menu {
+        font-size: 150%;
+    }
+}
