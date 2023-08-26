@@ -36,20 +36,21 @@ h1 {
 
 .show:hover {
     width: 17%;
-    border: 3px solid red;
+    border: 3px solid #ffad33;
     margin-top: 0;
 }
 
 .user-data {
-    width: 50%;
+    width: 43%;
     margin: 10px auto;
-    padding: 15px;
-    background-color: silver;
+    padding: 5px;
+    border: 3px solid #ffad33;
     border-radius: 8px;
     font-size: 100%;
 }
 .user-data input {
     font-size: 100%;
+    border: 2px solid #ffc266;
     border-radius: 4px;
     text-align: center;
 }
@@ -59,7 +60,7 @@ h1 {
 .quiz-field {
     width: 70%;
     margin: 20px auto;
-    background-color: silver;
+    background-color: #e6e6e6;
     font-size: 150%;
 }
 
@@ -77,43 +78,71 @@ h1 {
     display: inline-block;
     width: 40%;
     margin: 15px;
-    background-color: white;
-    color: grey;
+    background-color: #b3ffb3;
+    color: black;
     border-radius: 4px;
-    border: 2px solid silver;
+    border: 2px solid grey;
 }
 
 .answer:hover {
-    border: 2px solid red;
+    border: 2px solid #cc6600;
+    background-color: #99ff99;
     color: black;
 }
 
 .user-answer {
-    background-color: red;
+    background-color: #ffa64d;
+}
+
+.user-answer:hover {
+    background-color: #ffa64d;
 }
 
 button {
     font-size:100%;
     margin: 15px;
     padding:10px;
-    background-color: grey;
+    background-color: #b3b3b3;
+    color: #d9d9d9;
     border-radius: 18px;
+    border: 4px solid #e6e6e6;
 }
 
 .active-button {
-    background-color: lime;
+    background-color: #80ff80;
+    color: #004d00;
+    border: 4px solid #e6e6e6;
+}
+
+.active-button:hover {
+    border: 4px solid #99ff99;
+    color: #008000;
 }
 /* Result field with total score that appears in the end of the game*/
 .result-field {
     width: 70%;
     margin: 0 auto;
-    font-size: 250%;
-    background-color: silver;
+    font-size: 150%;
+    background-color: #e6e6e6;
+}
+
+.top {
+    width: 100%;
+}
+
+.congrat-user {
+    font-size: 150%;
+}
+
+.show-img img{
+    width: 60%;
+    margin: 0 auto;
 }
 
 .score-field {
     width: 50%;
-    margin: 10px auto;
+    margin: 0 auto;
+    padding: 5px;
     background-color: grey;
     border-radius: 8px;
     text-transform: capitalize;
@@ -136,24 +165,5 @@ button {
 }
 
 .menu {
-    font-size: 50%;
-}
-
-.cert-bg {
-    width: 60%;
-    margin: 2% 20%;
-    background-color: gold;
-    position: absolute;
-    z-index: -1;
-}
-.cert-bg img {
-    width: 100%;
-}
-
-.cert-text{
-    width: 35%;
-    margin: 10% 3% 0 42%;
-    font-size: 170%;
-    position: fixed;
-    z-index: 2;
+    font-size: 100%;
 }

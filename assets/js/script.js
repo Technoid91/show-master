@@ -15,7 +15,7 @@ for (show of showPicker){
             quizTitle(userChoice);
             runGame(userChoice);
         }else{
-            alert('Please enter your name (minimum 4 characters without numbers');
+            alert('Please enter your name\n(minimum 4 characters without numbers)');
         }
     });
 }
@@ -24,8 +24,13 @@ for (show of showPicker){
 * Function to pick the question pool based on user's choice
 */
 function runGame(pickedShow){
+
     // pick the corresponding image for final results page
-    document.getElementsByClassName('show-imga')[0].textContent = pickedShow;
+    let imgFile = document.createElement('img');
+    imgFile.src = 'assets/images/'+pickedShow+'.jpg';
+    imgFile.alt = 'Smiling characters of the show-quiz you have passed';
+    document.getElementsByClassName('show-img')[0].appendChild(imgFile);
+
     // define question list to show based on class of picked show image
     if (pickedShow === 'himym'){
         currentQuiz = himymQuiz;
@@ -62,7 +67,7 @@ function runGame(pickedShow){
                 askQuestion(currentQuiz[questionNumber]);
             }
         }else{
-            alert('Please pick the answer and than hit "Submit Answer"');
+            alert('Please pick the answer first and than hit "Submit Answer"');
         }
     });
 }
@@ -166,7 +171,6 @@ function userScore(action){
     }
     scoreCounter.textContent = score;
     console.log('Score: '+score);
-
 }
 
 function quizResult(){
@@ -220,44 +224,81 @@ function randomizeList(initial){
     return newList;
 }
 
+
+/*
+* Define here questions for the quiz in the following order:
+* question
+* correct answer
+* answer 2
+* answer 3
+* answer 4
+* file name of the corresponding image (optional), e.g. 'no-img.png'
+*/
+
 let himymQuiz = [
     ["What thing Ted stole from the restaurant several times to impress Robin?",
     "Blue french horn",
     "Green lantern",
     "Weird picture",
     "Robin's purse",
-    "test-img.png"],
+    "himym1.png"],
     ["How called the Marshal's and Barney's annual tradition?",
     "Slapsgiving Day",
     "St Barney's Day",
     "Desperate ",
-    "Last Answer"],
+    "Last Answer",
+    "himym2.png"],
     ["Each Halloween Ted was looking for a mystery girl dressed as...",
     "Slutty pumpkin",
     "Space spud",
     "Empire State Building",
-    "Barney"],
-    ["What was the favorite Ted's shoes?",
-    "Red cowboy boots",
-    "Grinch slippers",
-    "College trainers",
-    "Yellow wellies",
-    "test-img.png"],
-    ["Question 5",
-    "Correct answer",
-    "Answer2",
-    "Answer3",
-    "Answer4"],
-    ["Never shown question",
-    "No answer 1",
-    "No answer 2",
-    "No answer 3",
-    "No answer 4"]
+    "Barney",
+    "himym3.png"],
+    ["Who dumped Ted at the altar?",
+    "Stella",
+    "Viktoria",
+    "Zoey",
+    "Tracy",
+    "himym4.png"],
+    ["What was Robin's scene name?",
+    "Robin Sparkles",
+    "Robin Canada",
+    "ms. Beaver",
+    "Robin Glitter",
+    "himym5.png"]
     ];
 
 let tbbtQuiz = [
-    ['element1', 'element2'],
-    ['element3', 'element4']
+    ["Sheldon's Halloween costume was...",
+    "Doppler's effect",
+    "Dispersion",
+    "Train",
+    "Flash"],
+    ["Which of these languages Howard doesn't know?",
+    "Spanish",
+    "Russian",
+    "Chinese",
+    "French"],
+    ["What is Penny's native state?",
+    "Nebraska",
+    "Texas",
+    "Michigan",
+    "Alabama"],
+    ["What name has Raj's dog?",
+    "Cinnamon",
+    "Princess",
+    "Tinkerbell",
+    "Pluto"],
+    ["Whose sister Leonard was dating?",
+    "Rajesh",
+    "Sheldon",
+    "Howard",
+    "Penny"],
+    ["What was the fist Penny's job in the show?",
+    "Waitress",
+    "Actress",
+    "Sales agent",
+    "Model"]
     ];
 
 let friendsQuiz = [];
