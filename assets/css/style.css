@@ -169,6 +169,10 @@ button {
     background-color: chocolate;
 }
 
+.range-beginner {
+    background-color: white;
+}
+
 .menu {
     font-size: 100%;
 }

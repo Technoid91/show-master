@@ -197,7 +197,6 @@ function quizResult(){
         totalScore = (totalScore < 0) ? 0 : totalScore;
         // if user has 0 or less scores
         document.getElementsByClassName('user-data')[0].setAttribute('hidden', true);
-        document.getElementsByTagName('button')[2].setAttribute('hidden', true);
         document.getElementsByClassName('cheer-up')[0].removeAttribute('hidden');
     }
     console.log('Score:'+totalScore+' Range: '+userRange )
