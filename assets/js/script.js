@@ -247,7 +247,7 @@ let himymQuiz = [
     "Desperation Day ",
     "Intervention",
     "himym2.png"],
-    ["Each Halloween, Ted was searching for the mystery girl dressed as...",
+    ["What costume had Ted's mystery Halloween girl?",
     "Slutty pumpkin",
     "Spudnik",
     "Empire State Building",
@@ -331,7 +331,7 @@ let friendsQuiz = [
     "friends4.png"],
     ["What was Janice's catchphrase?",
     "Oh my god!",
-    "Come 'ere Chandler Bing",
+    "Bazinga!",
     "Speak to the hand",
     "No way!",
     "friends5.png"
