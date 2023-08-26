@@ -241,15 +241,15 @@ let himymQuiz = [
     "Green lantern",
     "Weird picture",
     "Robin's purse"],
-    ["How called the Marshal's and Barney's annual tradition?",
+    ["What is the name of Marshall's and Barney's annual tradition?",
     "Slapsgiving Day",
     "St Barney's Day",
-    "Desperate ",
-    "Last Answer",
+    "Desperation Day ",
+    "Intervention",
     "himym2.png"],
-    ["Each Halloween Ted was looking for a mystery girl dressed as...",
+    ["Each Halloween, Ted was searching for the mystery girl dressed as...",
     "Slutty pumpkin",
-    "Space spud",
+    "Spudnik",
     "Empire State Building",
     "Barney",
     "himym3.png"],
@@ -265,7 +265,7 @@ let himymQuiz = [
     "ms. Beaver",
     "Robin Glitter",
     "himym5.png"]
-    ];
+];
 
 let tbbtQuiz = [
     ["Sheldon's Halloween costume was...",
@@ -274,7 +274,7 @@ let tbbtQuiz = [
     "Train",
     "Flash",
     "tbbt1.png"],
-    ["Which of these languages Howard doesn't know?",
+    ["Which of these languages doesn't Howard know?",
     "Spanish",
     "Russian",
     "Chinese",
@@ -297,15 +297,15 @@ let tbbtQuiz = [
     "Howard",
     "Penny",
     "tbbt5.png"],
-    ["What was the fist Penny's job in the show?",
+    ["What was the first job Penny had in the show?",
     "Waitress",
     "Actress",
     "Sales agent",
     "Model"]
-    ];
+];
 
 let friendsQuiz = [
-    ["How called the most famous Phoebe's song?",
+    ["What is the name of Phoebe's most famous song?",
     "Smelly Cat",
     "My Coma Guy",
     "Crusty Old Man",
@@ -323,13 +323,13 @@ let friendsQuiz = [
     "Greg",
     "Willy",
     "friends3.png"],
-    ["What uniform Joey was dressed on Chandler's wedding?",
+    ["What uniform was Joey dressed in at Chandler's wedding?",
     "Soldier",
     "Firefighter",
     "Baseball player",
     "Builder",
     "friends4.png"],
-    ["What was Janice catch phrase?",
+    ["What was Janice's catchphrase?",
     "Oh my god!",
     "Come 'ere Chandler Bing",
     "Speak to the hand",
