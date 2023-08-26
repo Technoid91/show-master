@@ -206,8 +206,8 @@ button {
         margin: 0;
     }
     .quiz-image img{
-        width: 90%;
-        margin-top: 20px;
+        width: 70%;
+        margin-top: 0;
     }
     .answer {
         margin: 5px;
