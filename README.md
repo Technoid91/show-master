@@ -79,8 +79,10 @@ user doesn't have to scroll, which can be annoying.
 <hr>
 I tested all the features manually using devices with different screens and browsers Google Chrome and Safari.
 
+![performance test](https://i.ibb.co/86f42Ys/2023-08-28-21-01-59.png)
 - ### HTML
 
+No errors were returned when passing the official [W3C validator](https://validator.w3.org/nu/?doc=https%3A%2F%2Ftechnoid91.github.io%2Fshow-master%2F).
 
 - ### CSS
 
