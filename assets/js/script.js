@@ -33,11 +33,11 @@ function runGame(pickedShow){
 
     // define question list to show based on class of picked show image
     if (pickedShow === 'himym'){
-        currentQuiz = himymQuiz;
+        currentQuiz = randomizeList(himymQuiz);
     } else if (pickedShow === 'tbbt'){
-        currentQuiz = tbbtQuiz;
+        currentQuiz = randomizeList(tbbtQuiz);
     } else if (pickedShow === 'friends'){
-        currentQuiz = friendsQuiz;
+        currentQuiz = randomizeList(friendsQuiz);
     } else {
         console.log(`Wrong show! ${pickedShow} does not exist`);
         throw(`Wrong show! ${pickedShow} does not exist`);
