@@ -1,5 +1,4 @@
 
-
 let showPicker = document.getElementsByClassName('show');
 let inputField = document.getElementById('username');
 let username;
@@ -51,22 +50,29 @@ function runGame(pickedShow){
     userData.setAttribute('hidden', 'true');
     quizField.removeAttribute('hidden');
 
-    // Add event listener for submit button to show next question
-
+    // Show first question
     askQuestion(currentQuiz[0]);
+
+    // add event listener to the submit answer button to check the answer and show next question
     let submitButton = document.getElementsByTagName('button')[0];
     submitButton.addEventListener('click', function(){
+        // get the number of the question from html
         questionNumber = Number(document.getElementsByClassName('question-number')[0].textContent);
         if (document.getElementsByClassName('user-answer').length > 0){
+            // if user picked the answer and press the button - check if it's correct
             checkAnswer(currentQuiz[questionNumber-1][1]);
             if (questionNumber > 4){
+                // show total result after 5th question
                 quizResult();
             }
             else{
+                // make button inactive for the second question
                 submitButton.classList.remove('active-button');
+                //ask next question
                 askQuestion(currentQuiz[questionNumber]);
             }
         }else{
+            // if button is clicked with no answer picked
             alert('Please pick the answer first and than hit "Submit Answer"');
         }
     });
@@ -74,6 +80,7 @@ function runGame(pickedShow){
 
 /*
 * Change h2 element to the show title
+* decoration function
 */
 
 function quizTitle(show){
@@ -92,6 +99,11 @@ function quizTitle(show){
     document.getElementsByTagName('h2')[0].textContent = quizTitle;
 }
 
+/*
+* Show question: image, question, answers.
+* Function takes list as the argument. Each element - the part of a question:
+* question, correct answer, 3 other answers, (optional) name of image file
+*/
 function askQuestion(questionData){
 
     // get all question data from the list
@@ -99,7 +111,7 @@ function askQuestion(questionData){
     let allAnswers = [questionData[1], questionData[2], questionData[3], questionData[4]];
     let imgName;
 
-    // randomize answers to show because the first one is always correct
+    // randomize answers to show, because the first one is always correct
     let answers = randomizeList(allAnswers);
 
     let img = document.getElementById('question-img');
@@ -110,6 +122,7 @@ function askQuestion(questionData){
         img.alt = 'Question supporting image';
     }
     else{
+        // image placeholder if image name is not specified in a list
         img.src = 'assets/images/no-img.png';
         img.alt = 'No supporting image for this question';
     }
@@ -144,22 +157,37 @@ function askQuestion(questionData){
     }
 }
 
+/*
+* Function defines if user answer was correct or not
+* by comparing passed argument with actual user's answer.
+* Increase question number by 1
+*/
 function checkAnswer(correctAnswer){
 
     let answerElement = document.getElementsByClassName('user-answer')[0];
     let userAnswer = answerElement.textContent;
     if (userAnswer === correctAnswer){
+        // increase user's score
         userScore(true);
     }
     else{
+        // decrease user's score
        userScore(false);
     }
+    // remove highlight from the answer
     answerElement.classList.remove('user-answer');
     let nextQuestion = Number(document.getElementsByClassName('question-number')[0].textContent);
+    // increase question number
     nextQuestion++;
     document.getElementsByClassName('question-number')[0].textContent = nextQuestion;
 }
 
+
+/*
+* Function counts user score.
+* Passed argument should be true to increase score
+* and false to decrease it.
+*/
 function userScore(action){
     let scoreCounter = document.getElementsByClassName('user-score')[0];
     let score = Number(scoreCounter.textContent);
@@ -170,11 +198,15 @@ function userScore(action){
         score-=5;
     }
     scoreCounter.textContent = score;
-    console.log('Score: '+score);
 }
 
+/*
+* Function shows the congratulations and total result.
+* It also changes style, based on user's success in the game
+*
+*/
 function quizResult(){
-    // Change field to the one with user score
+    // Change game field to the user score
     document.getElementsByClassName('quiz-field')[0].setAttribute('hidden', true);
     document.getElementsByClassName('result-field')[0].removeAttribute('hidden');
 
@@ -194,24 +226,28 @@ function quizResult(){
         userRange = "bronze";
     } else {
         userRange = "beginner";
+        // if user has less than 0 scores
         totalScore = (totalScore < 0) ? 0 : totalScore;
-        // if user has 0 or less scores
-        document.getElementsByClassName('user-data')[0].setAttribute('hidden', true);
+        // if user's result is not very high - show cheer up message
         document.getElementsByClassName('cheer-up')[0].removeAttribute('hidden');
     }
-    console.log('Score:'+totalScore+' Range: '+userRange )
     // display total score, user range and change style of background accordingly
     document.getElementsByClassName('final-score')[0].textContent = totalScore+" / 100";
     document.getElementsByClassName('score-range')[0].textContent = userRange;
     document.getElementsByClassName('score-field')[0].classList.add('range-'+userRange);
 
+    // the button to start a new game
     let restartButton = document.getElementsByTagName('button')[1];
     restartButton.addEventListener('click', function(){
+        // if pressed - reload the page
         window.location.reload();
-        /*window.open("cert.html", "_blank");*/
     })
 }
 
+/*
+* Function takes a list as an argument, shuffle it's elements
+* and returns the new list
+*/
 function randomizeList(initial){
 
     let newList = [];
@@ -231,7 +267,7 @@ function randomizeList(initial){
 * answer 2
 * answer 3
 * answer 4
-* file name of the corresponding image (optional), e.g. 'no-img.png'
+* (optional) file name of the corresponding image, e.g. 'no-img.png'
 */
 
 let himymQuiz = [

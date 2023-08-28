@@ -177,6 +177,7 @@ button {
     font-size: 100%;
 }
 
+/* Responsive design for mobile screens */
 @media screen and (max-width: 600px){
 
     h2 {
