@@ -107,7 +107,7 @@ function askQuestion(questionData){
     // check if image name is specified in the list by its length
     if (questionData.length > 5){
         img.src = 'assets/images/'+questionData[5];
-        img.alt = 'Question supporting image without any clues';
+        img.alt = 'Question supporting image';
     }
     else{
         img.src = 'assets/images/no-img.png';
