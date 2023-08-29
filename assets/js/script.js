@@ -285,7 +285,7 @@ let himymQuiz = [
     ["What costume had Ted's mystery Halloween girl?",
     "Slutty pumpkin",
     "Spudnik",
-    "Empire State Building",
+    "Grinch",
     "Barney",
     "himym3.png"],
     ["Who dumped Ted at the altar?",
