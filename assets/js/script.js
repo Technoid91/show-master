@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function(){
             }
         });
     }
-})
+});
 /*
 * Function to pick the question pool based on user's choice
 */
