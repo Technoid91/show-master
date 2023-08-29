@@ -89,6 +89,13 @@ No errors were returned when passing the official [W3C validator](https://valida
 No errors were found when passing through official [(Jigsaw) validator](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Ftechnoid91.github.io%2Fshow-master%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=ru
 ).
 
+- ### JS
+
+No errors were found when passing through JSHint. 
+However, there were two warnings:
+"Functions declared within loops referencing an outer scoped variable may lead to confusing semantics"
+But these function work as expected.
+
 ## Deployment
 <hr>
 Website was deployed using GitHub Pages feature to be accessible.

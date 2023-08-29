@@ -1,24 +1,29 @@
+// Wait for the DOM to finish loading before running the game
+// Get divs with show images and add event listeners to them
 
-let showPicker = document.getElementsByClassName('show');
-let inputField = document.getElementById('username');
-let username;
-for (show of showPicker){
-    show.addEventListener('click', function(event) {
-        let userInput = inputField.value;
-        // check if input contains digits
-        let digits = /\d/.test(userInput);
-        // input should be at least 4 characters without numbers
-        if (userInput.length > 3 && !digits){
-            let userChoice = event.currentTarget.classList[1];
-            username = userInput;
-            quizTitle(userChoice);
-            runGame(userChoice);
-        }else{
-            alert('Please enter your name\n(minimum 4 characters without numbers)');
-        }
-    });
-}
-
+document.addEventListener('DOMContentLoaded', function(){
+    let showPicker = document.getElementsByClassName('show');
+    let inputField = document.getElementById('username');
+    let username;
+    for (let show of showPicker){
+        show.addEventListener('click', function(event) {
+            let userInput = inputField.value;
+            // check if input contains digits
+            let digits = /\d/.test(userInput);
+            // input should be at least 4 characters without numbers
+            if (userInput.length > 3 && !digits){
+                let userChoice = event.currentTarget.classList[1];
+                username = userInput;
+                // Congratulations to username (appears when the game is finished)
+                document.getElementsByClassName('congrat-user')[0].textContent = 'Congratulations, '+username+'!';
+                quizTitle(userChoice);
+                runGame(userChoice);
+            }else{
+                alert('Please enter your name\n(minimum 4 characters without numbers)');
+            }
+        });
+    }
+})
 /*
 * Function to pick the question pool based on user's choice
 */
@@ -31,6 +36,7 @@ function runGame(pickedShow){
     document.getElementsByClassName('show-img')[0].appendChild(imgFile);
 
     // define question list to show based on class of picked show image
+    let currentQuiz;
     if (pickedShow === 'himym'){
         currentQuiz = randomizeList(himymQuiz);
     } else if (pickedShow === 'tbbt'){
@@ -57,7 +63,7 @@ function runGame(pickedShow){
     let submitButton = document.getElementsByTagName('button')[0];
     submitButton.addEventListener('click', function(){
         // get the number of the question from html
-        questionNumber = Number(document.getElementsByClassName('question-number')[0].textContent);
+        let questionNumber = Number(document.getElementsByClassName('question-number')[0].textContent);
         if (document.getElementsByClassName('user-answer').length > 0){
             // if user picked the answer and press the button - check if it's correct
             checkAnswer(currentQuiz[questionNumber-1][1]);
@@ -109,7 +115,6 @@ function askQuestion(questionData){
     // get all question data from the list
     let question = questionData[0];
     let allAnswers = [questionData[1], questionData[2], questionData[3], questionData[4]];
-    let imgName;
 
     // randomize answers to show, because the first one is always correct
     let answers = randomizeList(allAnswers);
@@ -136,7 +141,7 @@ function askQuestion(questionData){
     document.getElementsByClassName('question')[0].textContent = question;
 
     // show answers
-    questionAnswers = document.getElementsByClassName('answer');
+    let questionAnswers = document.getElementsByClassName('answer');
     for (let i = 0; i < answers.length; i++){
         questionAnswers[i].textContent = answers[i];
 
@@ -145,7 +150,7 @@ function askQuestion(questionData){
             let oldChoice = document.getElementsByClassName('user-answer');
             // if user changed his mind - remove highlight
             if (oldChoice){
-                for (each of oldChoice){
+                for (let each of oldChoice){
                     each.classList.remove('user-answer');
                 }
             questionAnswers[i].classList.add('user-answer');
@@ -210,9 +215,6 @@ function quizResult(){
     document.getElementsByClassName('quiz-field')[0].setAttribute('hidden', true);
     document.getElementsByClassName('result-field')[0].removeAttribute('hidden');
 
-    // Congratulations to username
-    document.getElementsByClassName('congrat-user')[0].textContent = 'Congratulations, '+username+'!'
-
     // get total score
     let totalScore = Number(document.getElementsByClassName('user-score')[0].textContent);
 
@@ -241,7 +243,7 @@ function quizResult(){
     restartButton.addEventListener('click', function(){
         // if pressed - reload the page
         window.location.reload();
-    })
+    });
 }
 
 /*
@@ -253,7 +255,7 @@ function randomizeList(initial){
     let newList = [];
     for (let i = initial.length; i > 0; i--){
         let randNum = Math.floor(Math.random() * (i));
-        element = initial.splice(randNum, 1)[0];
+        let element = initial.splice(randNum, 1)[0];
         newList.push(element);
     }
     return newList;
